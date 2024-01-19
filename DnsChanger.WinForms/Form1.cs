@@ -185,7 +185,7 @@ public partial class MainForm : Form
 	private void btnSave_Click(object sender, EventArgs e)
 	{
 		if (!_context.Dns.Any(d => d.Preferred == txtPre1.Text &&
-		                           d.Alternate == txtAlter1.Text))
+								   d.Alternate == txtAlter1.Text))
 		{
 			_context.Dns.Add(new Dns()
 			{
@@ -200,5 +200,21 @@ public partial class MainForm : Form
 				RefreshList();
 			}
 		}
+	}
+
+	private void MainForm_Resize(object sender, EventArgs e)
+	{
+		if (WindowState == FormWindowState.Minimized)
+		{
+			Hide();
+			trayIcon.Visible = true;
+		}
+	}
+
+	private void trayIcon_MouseClick(object sender, MouseEventArgs e)
+	{
+		Show();
+		WindowState = FormWindowState.Normal;
+		trayIcon.Visible = false;
 	}
 }

@@ -28,6 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
 			btnSet = new Button();
 			btnUnSet = new Button();
@@ -55,6 +56,7 @@
 			label9 = new Label();
 			txtAlter1 = new TextBox();
 			btnSave = new Button();
+			trayIcon = new NotifyIcon(components);
 			((System.ComponentModel.ISupportInitialize)dgvDnsList).BeginInit();
 			SuspendLayout();
 			// 
@@ -290,6 +292,12 @@
 			btnSave.UseVisualStyleBackColor = true;
 			btnSave.Click += btnSave_Click;
 			// 
+			// trayIcon
+			// 
+			trayIcon.Icon = (Icon)resources.GetObject("trayIcon.Icon");
+			trayIcon.Text = "Dns Changer";
+			trayIcon.MouseClick += trayIcon_MouseClick;
+			// 
 			// MainForm
 			// 
 			AutoScaleDimensions = new SizeF(7F, 15F);
@@ -324,6 +332,7 @@
 			StartPosition = FormStartPosition.CenterScreen;
 			Text = "Dns Changer";
 			Load += MainForm_Load;
+			Resize += MainForm_Resize;
 			((System.ComponentModel.ISupportInitialize)dgvDnsList).EndInit();
 			ResumeLayout(false);
 			PerformLayout();
@@ -357,5 +366,6 @@
 		private DataGridViewTextBoxColumn Alternate;
 		private DataGridViewTextBoxColumn Description;
 		private Button btnSave;
+		private NotifyIcon trayIcon;
 	}
 }
