@@ -57,12 +57,18 @@
 			txtAlter1 = new TextBox();
 			btnSave = new Button();
 			trayIcon = new NotifyIcon(components);
+			gbCurrent = new GroupBox();
+			lblCurrentAlternate = new Label();
+			lblCurrentPreferred = new Label();
+			label11 = new Label();
+			label10 = new Label();
 			((System.ComponentModel.ISupportInitialize)dgvDnsList).BeginInit();
+			gbCurrent.SuspendLayout();
 			SuspendLayout();
 			// 
 			// btnSet
 			// 
-			btnSet.Location = new Point(12, 321);
+			btnSet.Location = new Point(12, 428);
 			btnSet.Name = "btnSet";
 			btnSet.Size = new Size(339, 23);
 			btnSet.TabIndex = 0;
@@ -72,7 +78,7 @@
 			// 
 			// btnUnSet
 			// 
-			btnUnSet.Location = new Point(12, 350);
+			btnUnSet.Location = new Point(12, 457);
 			btnUnSet.Name = "btnUnSet";
 			btnUnSet.Size = new Size(339, 23);
 			btnUnSet.TabIndex = 1;
@@ -87,7 +93,7 @@
 			dgvDnsList.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 			dgvDnsList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			dgvDnsList.Columns.AddRange(new DataGridViewColumn[] { Id, Preferred, Alternate, Description });
-			dgvDnsList.Location = new Point(12, 12);
+			dgvDnsList.Location = new Point(12, 107);
 			dgvDnsList.Name = "dgvDnsList";
 			dgvDnsList.ReadOnly = true;
 			dgvDnsList.Size = new Size(339, 177);
@@ -125,7 +131,7 @@
 			// 
 			// txtDescription
 			// 
-			txtDescription.Location = new Point(85, 205);
+			txtDescription.Location = new Point(85, 302);
 			txtDescription.Name = "txtDescription";
 			txtDescription.Size = new Size(266, 23);
 			txtDescription.TabIndex = 3;
@@ -133,7 +139,7 @@
 			// 
 			// txtPre1
 			// 
-			txtPre1.Location = new Point(85, 234);
+			txtPre1.Location = new Point(85, 331);
 			txtPre1.Name = "txtPre1";
 			txtPre1.Size = new Size(266, 23);
 			txtPre1.TabIndex = 4;
@@ -142,7 +148,7 @@
 			// label1
 			// 
 			label1.AutoSize = true;
-			label1.Location = new Point(12, 208);
+			label1.Location = new Point(12, 305);
 			label1.Name = "label1";
 			label1.Size = new Size(67, 15);
 			label1.TabIndex = 6;
@@ -151,7 +157,7 @@
 			// label2
 			// 
 			label2.AutoSize = true;
-			label2.Location = new Point(12, 237);
+			label2.Location = new Point(12, 334);
 			label2.Name = "label2";
 			label2.Size = new Size(55, 15);
 			label2.TabIndex = 7;
@@ -160,7 +166,7 @@
 			// label3
 			// 
 			label3.AutoSize = true;
-			label3.Location = new Point(12, 266);
+			label3.Location = new Point(12, 363);
 			label3.Name = "label3";
 			label3.Size = new Size(55, 15);
 			label3.TabIndex = 8;
@@ -169,7 +175,7 @@
 			// label4
 			// 
 			label4.AutoSize = true;
-			label4.Location = new Point(141, 237);
+			label4.Location = new Point(141, 334);
 			label4.Name = "label4";
 			label4.Size = new Size(10, 15);
 			label4.TabIndex = 10;
@@ -179,7 +185,7 @@
 			// label5
 			// 
 			label5.AutoSize = true;
-			label5.Location = new Point(213, 237);
+			label5.Location = new Point(213, 334);
 			label5.Name = "label5";
 			label5.Size = new Size(10, 15);
 			label5.TabIndex = 11;
@@ -189,7 +195,7 @@
 			// label6
 			// 
 			label6.AutoSize = true;
-			label6.Location = new Point(285, 237);
+			label6.Location = new Point(285, 334);
 			label6.Name = "label6";
 			label6.Size = new Size(10, 15);
 			label6.TabIndex = 13;
@@ -198,7 +204,7 @@
 			// 
 			// txtPre2
 			// 
-			txtPre2.Location = new Point(157, 234);
+			txtPre2.Location = new Point(157, 331);
 			txtPre2.Name = "txtPre2";
 			txtPre2.Size = new Size(50, 23);
 			txtPre2.TabIndex = 5;
@@ -206,7 +212,7 @@
 			// 
 			// txtPre3
 			// 
-			txtPre3.Location = new Point(229, 234);
+			txtPre3.Location = new Point(229, 331);
 			txtPre3.Name = "txtPre3";
 			txtPre3.Size = new Size(50, 23);
 			txtPre3.TabIndex = 6;
@@ -214,7 +220,7 @@
 			// 
 			// txtPre4
 			// 
-			txtPre4.Location = new Point(301, 234);
+			txtPre4.Location = new Point(301, 331);
 			txtPre4.Name = "txtPre4";
 			txtPre4.Size = new Size(50, 23);
 			txtPre4.TabIndex = 7;
@@ -222,7 +228,7 @@
 			// 
 			// txtAlter4
 			// 
-			txtAlter4.Location = new Point(301, 263);
+			txtAlter4.Location = new Point(301, 360);
 			txtAlter4.Name = "txtAlter4";
 			txtAlter4.Size = new Size(50, 23);
 			txtAlter4.TabIndex = 11;
@@ -230,7 +236,7 @@
 			// 
 			// txtAlter3
 			// 
-			txtAlter3.Location = new Point(229, 263);
+			txtAlter3.Location = new Point(229, 360);
 			txtAlter3.Name = "txtAlter3";
 			txtAlter3.Size = new Size(50, 23);
 			txtAlter3.TabIndex = 10;
@@ -238,7 +244,7 @@
 			// 
 			// txtAlter2
 			// 
-			txtAlter2.Location = new Point(157, 263);
+			txtAlter2.Location = new Point(157, 360);
 			txtAlter2.Name = "txtAlter2";
 			txtAlter2.Size = new Size(50, 23);
 			txtAlter2.TabIndex = 9;
@@ -247,7 +253,7 @@
 			// label7
 			// 
 			label7.AutoSize = true;
-			label7.Location = new Point(285, 266);
+			label7.Location = new Point(285, 363);
 			label7.Name = "label7";
 			label7.Size = new Size(10, 15);
 			label7.TabIndex = 20;
@@ -257,7 +263,7 @@
 			// label8
 			// 
 			label8.AutoSize = true;
-			label8.Location = new Point(213, 266);
+			label8.Location = new Point(213, 363);
 			label8.Name = "label8";
 			label8.Size = new Size(10, 15);
 			label8.TabIndex = 19;
@@ -267,7 +273,7 @@
 			// label9
 			// 
 			label9.AutoSize = true;
-			label9.Location = new Point(141, 266);
+			label9.Location = new Point(141, 363);
 			label9.Name = "label9";
 			label9.Size = new Size(10, 15);
 			label9.TabIndex = 18;
@@ -276,7 +282,7 @@
 			// 
 			// txtAlter1
 			// 
-			txtAlter1.Location = new Point(85, 263);
+			txtAlter1.Location = new Point(85, 360);
 			txtAlter1.Name = "txtAlter1";
 			txtAlter1.Size = new Size(266, 23);
 			txtAlter1.TabIndex = 8;
@@ -284,7 +290,7 @@
 			// 
 			// btnSave
 			// 
-			btnSave.Location = new Point(12, 292);
+			btnSave.Location = new Point(12, 399);
 			btnSave.Name = "btnSave";
 			btnSave.Size = new Size(339, 23);
 			btnSave.TabIndex = 12;
@@ -298,12 +304,62 @@
 			trayIcon.Text = "Dns Changer";
 			trayIcon.MouseClick += trayIcon_MouseClick;
 			// 
+			// gbCurrent
+			// 
+			gbCurrent.Controls.Add(lblCurrentAlternate);
+			gbCurrent.Controls.Add(lblCurrentPreferred);
+			gbCurrent.Controls.Add(label11);
+			gbCurrent.Controls.Add(label10);
+			gbCurrent.Location = new Point(12, 12);
+			gbCurrent.Name = "gbCurrent";
+			gbCurrent.Size = new Size(339, 80);
+			gbCurrent.TabIndex = 21;
+			gbCurrent.TabStop = false;
+			gbCurrent.Text = "Current";
+			// 
+			// lblCurrentAlternate
+			// 
+			lblCurrentAlternate.AutoSize = true;
+			lblCurrentAlternate.Location = new Point(73, 50);
+			lblCurrentAlternate.Name = "lblCurrentAlternate";
+			lblCurrentAlternate.Size = new Size(39, 15);
+			lblCurrentAlternate.TabIndex = 23;
+			lblCurrentAlternate.Text = "DHCP";
+			// 
+			// lblCurrentPreferred
+			// 
+			lblCurrentPreferred.AutoSize = true;
+			lblCurrentPreferred.Location = new Point(73, 26);
+			lblCurrentPreferred.Name = "lblCurrentPreferred";
+			lblCurrentPreferred.Size = new Size(39, 15);
+			lblCurrentPreferred.TabIndex = 22;
+			lblCurrentPreferred.Text = "DHCP";
+			// 
+			// label11
+			// 
+			label11.AutoSize = true;
+			label11.Location = new Point(6, 50);
+			label11.Name = "label11";
+			label11.Size = new Size(55, 15);
+			label11.TabIndex = 22;
+			label11.Text = "Alternate";
+			// 
+			// label10
+			// 
+			label10.AutoSize = true;
+			label10.Location = new Point(6, 26);
+			label10.Name = "label10";
+			label10.Size = new Size(55, 15);
+			label10.TabIndex = 22;
+			label10.Text = "Preferred";
+			// 
 			// MainForm
 			// 
 			AutoScaleDimensions = new SizeF(7F, 15F);
 			AutoScaleMode = AutoScaleMode.Font;
 			AutoSize = true;
-			ClientSize = new Size(364, 383);
+			ClientSize = new Size(364, 492);
+			Controls.Add(gbCurrent);
 			Controls.Add(btnSave);
 			Controls.Add(txtAlter4);
 			Controls.Add(txtAlter3);
@@ -334,6 +390,8 @@
 			Load += MainForm_Load;
 			Resize += MainForm_Resize;
 			((System.ComponentModel.ISupportInitialize)dgvDnsList).EndInit();
+			gbCurrent.ResumeLayout(false);
+			gbCurrent.PerformLayout();
 			ResumeLayout(false);
 			PerformLayout();
 		}
@@ -367,5 +425,10 @@
 		private DataGridViewTextBoxColumn Description;
 		private Button btnSave;
 		private NotifyIcon trayIcon;
+		private GroupBox gbCurrent;
+		private Label label11;
+		private Label label10;
+		private Label lblCurrentAlternate;
+		private Label lblCurrentPreferred;
 	}
 }

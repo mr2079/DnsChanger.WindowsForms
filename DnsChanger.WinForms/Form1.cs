@@ -25,7 +25,26 @@ public partial class MainForm : Form
 	{
 		dgvDnsList.AutoGenerateColumns = false;
 		RefreshList();
+		// GetCurrentDns();
+
+		gbCurrent.Enabled = false;
+
 	}
+
+	//public void GetCurrentDns()
+	//{
+	//	var nic = GetActiveEthernetOrWifiNetworkInterface();
+	//	if (nic == null) return;
+	//	var dnsAddresses = nic.GetIPProperties().DnsAddresses;
+	//	if (dnsAddresses.Count < 2)
+	//	{
+	//		lblCurrentPreferred.Text = string.Empty;
+	//		lblCurrentAlternate.Text = string.Empty;
+	//		return;
+	//	}
+	//	lblCurrentPreferred.Text = dnsAddresses[0].ToString();
+	//	lblCurrentAlternate.Text = dnsAddresses[1].ToString();
+	//}
 
 	private void Clear()
 	{
@@ -93,11 +112,15 @@ public partial class MainForm : Form
 			if (saveRes > 0) RefreshList();
 		}
 
+		btnUnSet_Click(null, null);
+		// GetCurrentDns();
+
 		var commandRes = RunCommand(CreateSetCommand(nic.Name, txtPre1.Text, txtAlter1.Text));
 		if (commandRes)
 		{
-			MessageBox.Show(@"Dns addresses have been changed", string.Empty, MessageBoxButtons.OK, MessageBoxIcon.Information);
 			Clear();
+			// GetCurrentDns();
+			MessageBox.Show(@"Dns addresses have been changed", string.Empty, MessageBoxButtons.OK, MessageBoxIcon.Information);
 			return;
 		}
 
@@ -116,29 +139,12 @@ public partial class MainForm : Form
 		var res = RunCommand($"netsh interface ipv4 set dns \"{nic.Name}\" dhcp");
 		if (res)
 		{
+			// GetCurrentDns();
 			MessageBox.Show(@"Dns addresses have been removed", string.Empty, MessageBoxButtons.OK, MessageBoxIcon.Information);
 			return;
 		}
 
 		MessageBox.Show(@"There is a problem in reset dns addresses!", string.Empty, MessageBoxButtons.OK, MessageBoxIcon.Error);
-	}
-
-	private void dgvDnsList_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
-	{
-		var nic = GetActiveEthernetOrWifiNetworkInterface();
-		var preferred = dgvDnsList.SelectedRows[0].Cells["Preferred"].Value.ToString();
-		var alternate = dgvDnsList.SelectedRows[0].Cells["Alternate"].Value.ToString();
-
-		btnUnSet_Click(null, null);
-
-		var commandRes = RunCommand(CreateSetCommand(nic.Name, preferred, alternate));
-		if (commandRes)
-		{
-			MessageBox.Show(@"Dns addresses have been changed", string.Empty, MessageBoxButtons.OK, MessageBoxIcon.Information);
-			Clear();
-			return;
-		}
-		MessageBox.Show(@"There is a problem in change dns addresses!", string.Empty, MessageBoxButtons.OK, MessageBoxIcon.Error);
 	}
 
 	private void dgvDnsList_KeyDown(object sender, KeyEventArgs e)
@@ -155,8 +161,9 @@ public partial class MainForm : Form
 			var commandRes = RunCommand(CreateSetCommand(nic.Name, preferred, alternate));
 			if (commandRes)
 			{
-				MessageBox.Show(@"Dns addresses have been changed", string.Empty, MessageBoxButtons.OK, MessageBoxIcon.Information);
 				Clear();
+				// GetCurrentDns();
+				MessageBox.Show(@"Dns addresses have been changed", string.Empty, MessageBoxButtons.OK, MessageBoxIcon.Information);
 				return;
 			}
 			MessageBox.Show(@"There is a problem in change dns addresses!", string.Empty, MessageBoxButtons.OK, MessageBoxIcon.Error);
