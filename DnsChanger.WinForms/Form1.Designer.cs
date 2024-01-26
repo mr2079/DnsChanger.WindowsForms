@@ -62,6 +62,7 @@
 			lblCurrentPreferred = new Label();
 			label11 = new Label();
 			label10 = new Label();
+			btnRefreshBox = new Button();
 			((System.ComponentModel.ISupportInitialize)dgvDnsList).BeginInit();
 			gbCurrent.SuspendLayout();
 			SuspendLayout();
@@ -131,17 +132,17 @@
 			// 
 			// txtDescription
 			// 
-			txtDescription.Location = new Point(85, 302);
+			txtDescription.Location = new Point(97, 302);
 			txtDescription.Name = "txtDescription";
-			txtDescription.Size = new Size(266, 23);
+			txtDescription.Size = new Size(254, 23);
 			txtDescription.TabIndex = 3;
 			txtDescription.TextAlign = HorizontalAlignment.Center;
 			// 
 			// txtPre1
 			// 
-			txtPre1.Location = new Point(85, 331);
+			txtPre1.Location = new Point(97, 331);
 			txtPre1.Name = "txtPre1";
-			txtPre1.Size = new Size(266, 23);
+			txtPre1.Size = new Size(254, 23);
 			txtPre1.TabIndex = 4;
 			txtPre1.TextAlign = HorizontalAlignment.Center;
 			// 
@@ -282,9 +283,9 @@
 			// 
 			// txtAlter1
 			// 
-			txtAlter1.Location = new Point(85, 360);
+			txtAlter1.Location = new Point(97, 360);
 			txtAlter1.Name = "txtAlter1";
-			txtAlter1.Size = new Size(266, 23);
+			txtAlter1.Size = new Size(254, 23);
 			txtAlter1.TabIndex = 8;
 			txtAlter1.TextAlign = HorizontalAlignment.Center;
 			// 
@@ -312,7 +313,7 @@
 			gbCurrent.Controls.Add(label10);
 			gbCurrent.Location = new Point(12, 12);
 			gbCurrent.Name = "gbCurrent";
-			gbCurrent.Size = new Size(339, 80);
+			gbCurrent.Size = new Size(283, 80);
 			gbCurrent.TabIndex = 21;
 			gbCurrent.TabStop = false;
 			gbCurrent.Text = "Current";
@@ -320,7 +321,7 @@
 			// lblCurrentAlternate
 			// 
 			lblCurrentAlternate.AutoSize = true;
-			lblCurrentAlternate.Location = new Point(73, 50);
+			lblCurrentAlternate.Location = new Point(85, 50);
 			lblCurrentAlternate.Name = "lblCurrentAlternate";
 			lblCurrentAlternate.Size = new Size(39, 15);
 			lblCurrentAlternate.TabIndex = 23;
@@ -329,7 +330,7 @@
 			// lblCurrentPreferred
 			// 
 			lblCurrentPreferred.AutoSize = true;
-			lblCurrentPreferred.Location = new Point(73, 26);
+			lblCurrentPreferred.Location = new Point(85, 26);
 			lblCurrentPreferred.Name = "lblCurrentPreferred";
 			lblCurrentPreferred.Size = new Size(39, 15);
 			lblCurrentPreferred.TabIndex = 22;
@@ -353,12 +354,23 @@
 			label10.TabIndex = 22;
 			label10.Text = "Preferred";
 			// 
+			// btnRefreshBox
+			// 
+			btnRefreshBox.Location = new Point(301, 22);
+			btnRefreshBox.Name = "btnRefreshBox";
+			btnRefreshBox.Size = new Size(59, 70);
+			btnRefreshBox.TabIndex = 24;
+			btnRefreshBox.Text = "Refresh";
+			btnRefreshBox.UseVisualStyleBackColor = true;
+			btnRefreshBox.Click += btnRefreshBox_Click;
+			// 
 			// MainForm
 			// 
 			AutoScaleDimensions = new SizeF(7F, 15F);
 			AutoScaleMode = AutoScaleMode.Font;
 			AutoSize = true;
 			ClientSize = new Size(364, 492);
+			Controls.Add(btnRefreshBox);
 			Controls.Add(gbCurrent);
 			Controls.Add(btnSave);
 			Controls.Add(txtAlter4);
@@ -430,5 +442,6 @@
 		private Label label10;
 		private Label lblCurrentAlternate;
 		private Label lblCurrentPreferred;
+		private Button btnRefreshBox;
 	}
 }
