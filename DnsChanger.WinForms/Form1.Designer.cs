@@ -313,7 +313,7 @@
 			gbCurrent.Controls.Add(label10);
 			gbCurrent.Location = new Point(12, 12);
 			gbCurrent.Name = "gbCurrent";
-			gbCurrent.Size = new Size(283, 80);
+			gbCurrent.Size = new Size(267, 80);
 			gbCurrent.TabIndex = 21;
 			gbCurrent.TabStop = false;
 			gbCurrent.Text = "Current";
@@ -356,9 +356,9 @@
 			// 
 			// btnRefreshBox
 			// 
-			btnRefreshBox.Location = new Point(301, 22);
+			btnRefreshBox.Location = new Point(285, 22);
 			btnRefreshBox.Name = "btnRefreshBox";
-			btnRefreshBox.Size = new Size(59, 70);
+			btnRefreshBox.Size = new Size(66, 70);
 			btnRefreshBox.TabIndex = 24;
 			btnRefreshBox.Text = "Refresh";
 			btnRefreshBox.UseVisualStyleBackColor = true;
