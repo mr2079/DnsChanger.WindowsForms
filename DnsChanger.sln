@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DnsChanger.WinForms", "DnsChanger.WinForms\DnsChanger.WinForms.csproj", "{3C704394-BDE7-4F10-BB6D-227BA996CAEB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DnsChanger.WinForms", "DnsChanger.WinForms\DnsChanger.WinForms.csproj", "{3C704394-BDE7-4F10-BB6D-227BA996CAEB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DnsChanger.Wpf", "DnsChanger.Wpf\DnsChanger.Wpf.csproj", "{347D9F0F-F1D3-4BE9-9799-BBFFDD53760E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{3C704394-BDE7-4F10-BB6D-227BA996CAEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3C704394-BDE7-4F10-BB6D-227BA996CAEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3C704394-BDE7-4F10-BB6D-227BA996CAEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{347D9F0F-F1D3-4BE9-9799-BBFFDD53760E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{347D9F0F-F1D3-4BE9-9799-BBFFDD53760E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{347D9F0F-F1D3-4BE9-9799-BBFFDD53760E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{347D9F0F-F1D3-4BE9-9799-BBFFDD53760E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

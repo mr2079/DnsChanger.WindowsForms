@@ -30,7 +30,6 @@
 		{
 			components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-			btnSet = new Button();
 			btnUnSet = new Button();
 			dgvDnsList = new DataGridView();
 			Id = new DataGridViewTextBoxColumn();
@@ -63,27 +62,18 @@
 			label11 = new Label();
 			label10 = new Label();
 			btnRefreshBox = new Button();
+			btnExit = new Button();
 			((System.ComponentModel.ISupportInitialize)dgvDnsList).BeginInit();
 			gbCurrent.SuspendLayout();
 			SuspendLayout();
 			// 
-			// btnSet
-			// 
-			btnSet.Location = new Point(12, 428);
-			btnSet.Name = "btnSet";
-			btnSet.Size = new Size(339, 23);
-			btnSet.TabIndex = 0;
-			btnSet.Text = "Save and Set";
-			btnSet.UseVisualStyleBackColor = true;
-			btnSet.Click += btnSet_Click;
-			// 
 			// btnUnSet
 			// 
-			btnUnSet.Location = new Point(12, 457);
+			btnUnSet.Location = new Point(13, 428);
 			btnUnSet.Name = "btnUnSet";
 			btnUnSet.Size = new Size(339, 23);
 			btnUnSet.TabIndex = 1;
-			btnUnSet.Text = "Unset";
+			btnUnSet.Text = "Reset";
 			btnUnSet.UseVisualStyleBackColor = true;
 			btnUnSet.Click += btnUnSet_Click;
 			// 
@@ -99,6 +89,7 @@
 			dgvDnsList.ReadOnly = true;
 			dgvDnsList.Size = new Size(339, 177);
 			dgvDnsList.TabIndex = 2;
+			dgvDnsList.RowHeaderMouseDoubleClick += dgvDnsList_RowHeaderMouseDoubleClick;
 			dgvDnsList.KeyDown += dgvDnsList_KeyDown;
 			// 
 			// Id
@@ -356,20 +347,31 @@
 			// 
 			// btnRefreshBox
 			// 
-			btnRefreshBox.Location = new Point(285, 22);
+			btnRefreshBox.Location = new Point(286, 52);
 			btnRefreshBox.Name = "btnRefreshBox";
-			btnRefreshBox.Size = new Size(66, 70);
+			btnRefreshBox.Size = new Size(66, 40);
 			btnRefreshBox.TabIndex = 24;
 			btnRefreshBox.Text = "Refresh";
 			btnRefreshBox.UseVisualStyleBackColor = true;
 			btnRefreshBox.Click += btnRefreshBox_Click;
+			// 
+			// btnExit
+			// 
+			btnExit.Location = new Point(286, 12);
+			btnExit.Name = "btnExit";
+			btnExit.Size = new Size(66, 40);
+			btnExit.TabIndex = 25;
+			btnExit.Text = "Exit";
+			btnExit.UseVisualStyleBackColor = true;
+			btnExit.Click += btnExit_Click;
 			// 
 			// MainForm
 			// 
 			AutoScaleDimensions = new SizeF(7F, 15F);
 			AutoScaleMode = AutoScaleMode.Font;
 			AutoSize = true;
-			ClientSize = new Size(364, 492);
+			ClientSize = new Size(364, 461);
+			Controls.Add(btnExit);
 			Controls.Add(btnRefreshBox);
 			Controls.Add(gbCurrent);
 			Controls.Add(btnSave);
@@ -393,12 +395,13 @@
 			Controls.Add(txtDescription);
 			Controls.Add(dgvDnsList);
 			Controls.Add(btnUnSet);
-			Controls.Add(btnSet);
 			FormBorderStyle = FormBorderStyle.FixedSingle;
 			Icon = (Icon)resources.GetObject("$this.Icon");
+			MaximizeBox = false;
 			Name = "MainForm";
 			StartPosition = FormStartPosition.CenterScreen;
 			Text = "Dns Changer";
+			FormClosing += MainForm_FormClosing;
 			Load += MainForm_Load;
 			Resize += MainForm_Resize;
 			((System.ComponentModel.ISupportInitialize)dgvDnsList).EndInit();
@@ -409,8 +412,6 @@
 		}
 
 		#endregion
-
-		private Button btnSet;
 		private Button btnUnSet;
 		private DataGridView dgvDnsList;
 		private TextBox txtDescription;
@@ -443,5 +444,6 @@
 		private Label lblCurrentAlternate;
 		private Label lblCurrentPreferred;
 		private Button btnRefreshBox;
+		private Button btnExit;
 	}
 }

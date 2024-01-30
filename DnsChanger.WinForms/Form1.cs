@@ -14,7 +14,7 @@ public partial class MainForm : Form
 				   throw new NullReferenceException();
 	}
 
-	public void RefreshList()
+	private void RefreshList()
 	{
 		dgvDnsList.DataSource = _context.Dns
 			.OrderByDescending(d => d.Id)
@@ -28,7 +28,7 @@ public partial class MainForm : Form
 		RefreshCurrentDnsBox();
 	}
 
-	public void RefreshCurrentDnsBox()
+	private void RefreshCurrentDnsBox()
 	{
 		var tasks = new[]
 		{
@@ -37,7 +37,7 @@ public partial class MainForm : Form
 		Task.WaitAll(tasks);
 	}
 
-	public async Task GetCurrentDns()
+	private async Task GetCurrentDns()
 	{
 		lblCurrentPreferred.Text = @"DHCP";
 		lblCurrentAlternate.Text = @"DHCP";
@@ -64,11 +64,13 @@ public partial class MainForm : Form
 		txtAlter4.Text = string.Empty;
 	}
 
-	public Task<NetworkInterface?> GetActiveEthernetOrWifiNetworkInterface()
-		=> Task.FromResult(NetworkInterface.GetAllNetworkInterfaces().FirstOrDefault(
+	private Task<NetworkInterface?> GetActiveEthernetOrWifiNetworkInterface()
+	{
+		return Task.FromResult(NetworkInterface.GetAllNetworkInterfaces().FirstOrDefault(
 			a => a.OperationalStatus == OperationalStatus.Up &&
-				 (a.NetworkInterfaceType == NetworkInterfaceType.Wireless80211 || a.NetworkInterfaceType == NetworkInterfaceType.Ethernet) &&
-				 a.GetIPProperties().GatewayAddresses.Any(g => g.Address.AddressFamily.ToString() == "InterNetwork")));
+			     (a.NetworkInterfaceType == NetworkInterfaceType.Wireless80211 || a.NetworkInterfaceType == NetworkInterfaceType.Ethernet) &&
+			     a.GetIPProperties().GatewayAddresses.Any(g => g.Address.AddressFamily.ToString() == "InterNetwork")));
+	}
 
 	private bool RunCommand(string arg)
 	{
@@ -88,51 +90,8 @@ public partial class MainForm : Form
 		}
 	}
 
-	public string CreateSetCommand(string nicName, string preferred, string alternate)
+	private string CreateSetCommand(string nicName, string preferred, string alternate)
 		=> $"netsh interface ipv4 add dnsservers \"{nicName}\" address={preferred} index=1 ; netsh interface ipv4 add dnsservers \"{nicName}\" address={alternate} index=2";
-
-
-	private void btnSet_Click(object sender, EventArgs e)
-	{
-		var nic = GetActiveEthernetOrWifiNetworkInterface().Result;
-		if (nic == null)
-		{
-			MessageBox.Show(@"There is a problem in get network interface information!", string.Empty, MessageBoxButtons.OK, MessageBoxIcon.Error);
-			return;
-		}
-
-		//var preferred = $"{txtPre1.Text}.{txtPre2.Text}.{txtPre3.Text}.{txtPre4.Text}";
-		//var alternate = $"{txtAlter1.Text}.{txtAlter2.Text}.{txtAlter3.Text}.{txtAlter4.Text}";
-
-		if (!_context.Dns.Any(d => d.Preferred == txtPre1.Text &&
-								   d.Alternate == txtAlter1.Text))
-		{
-			_context.Dns.Add(new Dns()
-			{
-				Description = txtDescription.Text,
-				Preferred = txtPre1.Text,
-				Alternate = txtAlter1.Text
-			});
-			var saveRes = _context.SaveChanges();
-			if (saveRes > 0) RefreshList();
-		}
-
-		btnUnSet_Click(null, null);
-		
-
-		var commandRes = RunCommand(CreateSetCommand(nic.Name, txtPre1.Text, txtAlter1.Text));
-		if (commandRes)
-		{
-			Clear();
-			
-			MessageBox.Show(@"Dns addresses have been changed", string.Empty, MessageBoxButtons.OK, MessageBoxIcon.Information);
-			return;
-		}
-
-		MessageBox.Show(@"There is a problem in change dns addresses!", string.Empty, MessageBoxButtons.OK, MessageBoxIcon.Error);
-		btnUnSet_Click(null, null);
-		
-	}
 
 	private void btnUnSet_Click(object sender, EventArgs e)
 	{
@@ -162,13 +121,11 @@ public partial class MainForm : Form
 			var alternate = dgvDnsList.SelectedRows[0].Cells["Alternate"].Value.ToString();
 
 			btnUnSet_Click(null, null);
-			
 
 			var commandRes = RunCommand(CreateSetCommand(nic.Name, preferred, alternate));
 			if (commandRes)
 			{
 				Clear();
-				
 				MessageBox.Show(@"Dns addresses have been changed", string.Empty, MessageBoxButtons.OK, MessageBoxIcon.Information);
 				return;
 			}
@@ -235,5 +192,43 @@ public partial class MainForm : Form
 	private void btnRefreshBox_Click(object sender, EventArgs e)
 	{
 		RefreshCurrentDnsBox();
+	}
+
+	private void btnExit_Click(object sender, EventArgs e)
+	{
+		var result = MessageBox.Show(@"Do you really want to close the program?",
+			string.Empty, MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+
+		if (result == DialogResult.OK)
+		{
+			FormClosing -= MainForm_FormClosing;
+			Application.Exit();
+		}
+	}
+
+	private void MainForm_FormClosing(object? sender, FormClosingEventArgs e)
+	{
+		e.Cancel = true;
+		Hide();
+		trayIcon.Visible = true;
+	}
+
+	private void dgvDnsList_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+	{
+		var nic = GetActiveEthernetOrWifiNetworkInterface().Result;
+		var preferred = dgvDnsList.SelectedRows[0].Cells["Preferred"].Value.ToString();
+		var alternate = dgvDnsList.SelectedRows[0].Cells["Alternate"].Value.ToString();
+
+		btnUnSet_Click(null, null);
+
+		var commandRes = RunCommand(CreateSetCommand(nic.Name, preferred, alternate));
+		if (commandRes)
+		{
+			Clear();
+			MessageBox.Show(@"Dns addresses have been changed", string.Empty, MessageBoxButtons.OK, MessageBoxIcon.Information);
+			return;
+		}
+
+		MessageBox.Show(@"There is a problem in change dns addresses!", string.Empty, MessageBoxButtons.OK, MessageBoxIcon.Error);
 	}
 }
