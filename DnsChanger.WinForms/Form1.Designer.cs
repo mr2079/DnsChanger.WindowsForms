@@ -20,7 +20,7 @@
 			base.Dispose(disposing);
 		}
 
-        #region Windows Form Designer generated code
+		#region Windows Form Designer generated code
 
 		/// <summary>
 		///  Required method for Designer support - do not modify
@@ -403,7 +403,6 @@
 			Text = "Dns Changer";
 			FormClosing += MainForm_FormClosing;
 			Load += MainForm_Load;
-			Resize += MainForm_Resize;
 			((System.ComponentModel.ISupportInitialize)dgvDnsList).EndInit();
 			gbCurrent.ResumeLayout(false);
 			gbCurrent.PerformLayout();

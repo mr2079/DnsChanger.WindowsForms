@@ -172,15 +172,6 @@ public partial class MainForm : Form
 		}
 	}
 
-	private void MainForm_Resize(object sender, EventArgs e)
-	{
-		if (WindowState == FormWindowState.Minimized)
-		{
-			Hide();
-			trayIcon.Visible = true;
-		}
-	}
-
 	private void trayIcon_MouseClick(object sender, MouseEventArgs e)
 	{
 		if (e.Button != MouseButtons.Left) return;
