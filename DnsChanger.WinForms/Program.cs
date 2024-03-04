@@ -15,7 +15,7 @@ internal static class Program
 	}
 
 	public static T? GetService<T>() where T : class
-		=> (T?)ServiceProvider.GetService<T>();
+		=> ServiceProvider.GetService<T>();
 
 	[STAThread]
 	static void Main()

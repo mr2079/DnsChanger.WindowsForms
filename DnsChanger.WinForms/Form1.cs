@@ -39,8 +39,6 @@ public partial class MainForm : Form
 
 	private async Task GetCurrentDns()
 	{
-		lblCurrentPreferred.Text = @"DHCP";
-		lblCurrentAlternate.Text = @"DHCP";
 		var nic = await GetActiveEthernetOrWifiNetworkInterface();
 		if (nic == null) return;
 		var dnsAddresses = nic.GetIPProperties().DnsAddresses;
@@ -49,7 +47,12 @@ public partial class MainForm : Form
 			lblCurrentPreferred.Text = dnsAddresses[0].ToString();
 			lblCurrentAlternate.Text = dnsAddresses[1].ToString();
 		}
-	}
+        else
+        {
+            lblCurrentPreferred.Text = dnsAddresses[0].ToString();
+            lblCurrentAlternate.Text = @"-";
+        }
+    }
 
 	private void Clear()
 	{
