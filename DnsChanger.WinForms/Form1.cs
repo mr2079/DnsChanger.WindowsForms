@@ -230,4 +230,42 @@ public partial class MainForm : Form
 	{
 		RefreshCurrentDnsBox();
 	}
+
+    private void btnExit_Click(object sender, EventArgs e)
+    {
+        var result = MessageBox.Show(@"Do you really want to close the program?",
+            string.Empty, MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+
+        if (result == DialogResult.OK)
+        {
+            FormClosing -= MainForm_FormClosing;
+            Application.Exit();
+        }
+    }
+
+    private void MainForm_FormClosing(object? sender, FormClosingEventArgs e)
+    {
+        e.Cancel = true;
+        Hide();
+        trayIcon.Visible = true;
+    }
+
+    private void dgvDnsList_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+    {
+        var nic = GetActiveEthernetOrWifiNetworkInterface().Result;
+        var preferred = dgvDnsList.SelectedRows[0].Cells["Preferred"].Value.ToString();
+        var alternate = dgvDnsList.SelectedRows[0].Cells["Alternate"].Value.ToString();
+
+        btnUnSet_Click(null, null);
+
+        var commandRes = RunCommand(CreateSetCommand(nic.Name, preferred, alternate));
+        if (commandRes)
+        {
+            Clear();
+            MessageBox.Show(@"Dns addresses have been changed", string.Empty, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            return;
+        }
+
+        MessageBox.Show(@"There is a problem in change dns addresses!", string.Empty, MessageBoxButtons.OK, MessageBoxIcon.Error);
+    }
 }
