@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using System.Diagnostics;
 
 namespace DnsChanger.WinForms;
 
@@ -20,7 +21,14 @@ internal static class Program
 	[STAThread]
 	static void Main()
 	{
-		ApplicationConfiguration.Initialize();
+        var currentProcess = Process.GetCurrentProcess();
+        var openProcesses = Process.GetProcessesByName(currentProcess.ProcessName);
+        if (openProcesses.Any())
+			foreach (var p in openProcesses) 
+				if (p.Id !=  currentProcess.Id)
+                    p.Kill();
+
+        ApplicationConfiguration.Initialize();
 		ConfigureServices();
 		if (DatabaseConfiguration.Create())
 			GetService<ApplicationDbContext>()?.Database.Migrate();
